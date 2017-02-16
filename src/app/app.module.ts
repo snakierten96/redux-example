@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AppActions } from './app.actions';
 
 import { ElephantsModule } from './elephants/elephants.module';
+import { LionsModule } from './lions/lions.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ElephantsModule } from './elephants/elephants.module';
     NgReduxModule,
     AppRoutingModule,
     ElephantsModule,
+    LionsModule,
   ],
   providers: [AppActions],
   bootstrap: [AppComponent]

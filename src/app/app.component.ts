@@ -7,6 +7,9 @@ import { AppActions } from './app.actions';
 import { ElephantsEpics } from './elephants/elephants.epics';
 import { elephantsReducer } from './elephants/elephants.reducer';
 
+import { LionsEpics } from './lions/lions.epics';
+import { lionsReducer } from './lions/lions.reducer';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,17 +21,20 @@ export class AppComponent implements OnInit {
   constructor(
     private ngRedux: NgRedux<any>,
     private actions: AppActions,
-    elephantsEpics: ElephantsEpics
+    elephantsEpics: ElephantsEpics,
+    lionsEpics: LionsEpics
   ) {
     const rootReducer = combineReducers({
-      elephants: elephantsReducer
+      elephants: elephantsReducer,
+      lions: lionsReducer
     });
 
     ngRedux.configureStore(
       rootReducer,
       {},
       [
-        createEpicMiddleware(combineEpics(...elephantsEpics.epics))
+        createEpicMiddleware(combineEpics(...elephantsEpics.epics)),
+        createEpicMiddleware(combineEpics(...lionsEpics.epics))
       ]
     );
   }

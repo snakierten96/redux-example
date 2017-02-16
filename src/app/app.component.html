@@ -1,9 +1,15 @@
 <md-sidenav-container fullscreen>
   <md-sidenav #sidenav>
     <md-nav-list>
-      <a md-list-item [routerLink]="['/elephants']" routerLinkActive="active">
+      <a md-list-item [routerLink]="['/elephants']"
+          routerLinkActive="active" (click)="sidenav.toggle()">
         <md-icon md-list-icon>voicemail</md-icon>
         <span md-line>Elephants</span>
+      </a>
+      <a md-list-item [routerLink]="['/lions']"
+          routerLinkActive="active" (click)="sidenav.toggle()">
+        <md-icon md-list-icon>pets</md-icon>
+        <span md-line>Lions</span>
       </a>
     </md-nav-list>
   </md-sidenav>

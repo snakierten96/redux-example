@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux, DevToolsExtension } from '@angular-redux/store';
 import { NgReduxRouter, routerReducer } from '@angular-redux/router';
+import { provideReduxForms, composeReducers, defaultFormReducer } from '@angular-redux/form';
 import { Action, combineReducers } from 'redux';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import * as createLogger from 'redux-logger';
@@ -28,11 +29,14 @@ export class AppComponent implements OnInit {
     elephantsEpics: ElephantsEpics,
     lionsEpics: LionsEpics
   ) {
-    const rootReducer = combineReducers({
-      elephants: elephantsReducer,
-      lions: lionsReducer,
-      router: routerReducer,
-    });
+    const rootReducer = composeReducers(
+      defaultFormReducer(),
+      combineReducers({
+        elephants: elephantsReducer,
+        lions: lionsReducer,
+        router: routerReducer,
+      })
+    );
 
     ngRedux.configureStore(
       rootReducer,
@@ -45,6 +49,7 @@ export class AppComponent implements OnInit {
       devtools.isEnabled() ? [ devtools.enhancer() ] : []
     );
     ngReduxRouter.initialize();
+    provideReduxForms(ngRedux);
   }
 
   ngOnInit() {

@@ -11,6 +11,11 @@
         <md-icon md-list-icon>pets</md-icon>
         <span md-line>Lions</span>
       </a>
+      <a md-list-item [routerLink]="['/feedback']"
+          routerLinkActive="active" (click)="sidenav.toggle()">
+        <md-icon md-list-icon>assignment</md-icon>
+        <span md-line>Feedback</span>
+      </a>
     </md-nav-list>
   </md-sidenav>
   <md-toolbar color="primary" class="md-elevation-z6">

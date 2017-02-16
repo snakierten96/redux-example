@@ -14,6 +14,7 @@ import { AppActions } from './app.actions';
 
 import { ElephantsModule } from './elephants/elephants.module';
 import { LionsModule } from './lions/lions.module';
+import { FeedbackModule } from './feedback/feedback.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LionsModule } from './lions/lions.module';
     AppRoutingModule,
     ElephantsModule,
     LionsModule,
+    FeedbackModule,
   ],
   providers: [AppActions],
   bootstrap: [AppComponent]

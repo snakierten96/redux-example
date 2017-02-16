@@ -1,0 +1,6 @@
+@import '~@angular/material/core/theming/all-theme';
+
+$app-primary: mat-palette($mat-teal);
+$app-accent: mat-palette($mat-purple, A700);
+
+$app-theme: mat-light-theme($app-primary, $app-accent);

@@ -6,6 +6,7 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { NgReduxModule } from '@angular-redux/store';
+import { NgReduxRouterModule } from '@angular-redux/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { LionsModule } from './lions/lions.module';
     MaterialModule.forRoot(),
     FlexLayoutModule,
     NgReduxModule,
+    NgReduxRouterModule,
     AppRoutingModule,
     ElephantsModule,
     LionsModule,

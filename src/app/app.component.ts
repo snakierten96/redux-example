@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux, DevToolsExtension } from '@angular-redux/store';
+import { NgReduxRouter, routerReducer } from '@angular-redux/router';
 import { Action, combineReducers } from 'redux';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
+import * as createLogger from 'redux-logger';
 
 import { AppActions } from './app.actions';
 import { ElephantsEpics } from './elephants/elephants.epics';
@@ -21,22 +23,28 @@ export class AppComponent implements OnInit {
   constructor(
     private ngRedux: NgRedux<any>,
     private actions: AppActions,
+    devtools: DevToolsExtension,
+    ngReduxRouter: NgReduxRouter,
     elephantsEpics: ElephantsEpics,
     lionsEpics: LionsEpics
   ) {
     const rootReducer = combineReducers({
       elephants: elephantsReducer,
-      lions: lionsReducer
+      lions: lionsReducer,
+      router: routerReducer,
     });
 
     ngRedux.configureStore(
       rootReducer,
       {},
       [
+        createLogger(),
         createEpicMiddleware(combineEpics(...elephantsEpics.epics)),
         createEpicMiddleware(combineEpics(...lionsEpics.epics))
-      ]
+      ],
+      devtools.isEnabled() ? [ devtools.enhancer() ] : []
     );
+    ngReduxRouter.initialize();
   }
 
   ngOnInit() {

@@ -43,8 +43,8 @@ export class AppComponent implements OnInit {
       {},
       [
         createLogger(),
+        createEpicMiddleware(combineEpics(...lionsEpics.epics)),
         createEpicMiddleware(combineEpics(...elephantsEpics.epics)),
-        createEpicMiddleware(combineEpics(...lionsEpics.epics))
       ],
       devtools.isEnabled() ? [ devtools.enhancer() ] : []
     );
